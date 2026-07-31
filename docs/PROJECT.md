@@ -33,7 +33,7 @@ The primary user is someone editing substantial Markdown with an agent and wanti
 ## Durable boundaries
 
 - The extension is agent-neutral and does not call an LLM API.
-- Agent behaviour is distributed as one vendor-neutral Agent Skills package. Installation copies the package unchanged into the discovery directory supported by the chosen client; it does not require editing an existing `AGENTS.md` or `CLAUDE.md`.
+- Agent behaviour is distributed as one vendor-neutral Agent Skills package. The canonical `SKILL.md` is bundled in the VSIX, attached directly to each release, and retained in the complete release kit. A consent-based installer can copy it into user or workspace discovery directories without editing an existing `AGENTS.md`, `CLAUDE.md`, or another skill.
 - The extension does not inject text into Codex, Claude, Cursor, or another vendor's chat surface. Clipboard handoff is explicit, inspectable, and portable.
 - Persist only `open|closed`; infer waiting/pending when the latest submitted message is human-authored.
 - Preserve the existing `CMT:THREAD` / `CMT:MSG` grammar unless a backward-compatible migration earns its cost.
@@ -43,7 +43,7 @@ The primary user is someone editing substantial Markdown with an agent and wanti
 
 ## Current reality
 
-The opt-in Collaborative Review custom editor now provides rendered Markdown, anchored markers, full conversation history, independent composers, guarded draft/submit/delete mutations, responsive layouts, keyboard navigation, and an all-thread activity view. A file-backed ready count, explicit skill invocation, and copied handoff prompt connect several submitted comments to one continuous external agent conversation without a vendor API.
+The opt-in Collaborative Review custom editor now provides rendered Markdown, anchored markers, full conversation history, independent composers, guarded draft/submit/delete mutations, responsive layouts, keyboard navigation, and an all-thread activity view. A file-backed ready count, explicit skill invocation, and copied handoff prompt connect several submitted comments to one continuous external agent conversation without a vendor API. The editor hosting the UI and the harness editing the repository may be different products, provided they use the same working copy.
 
 The active reset is tracked in [plans/active/collaborative-review-reset.md](plans/active/collaborative-review-reset.md). Consequential rationale is in [DECISIONS.md](DECISIONS.md), and superseded material remains under [archive](archive/README.md) and [plans/archive](plans/archive/).
 

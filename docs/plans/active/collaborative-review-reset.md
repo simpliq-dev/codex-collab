@@ -71,6 +71,15 @@ Acceptance:
 - [x] Require a post-edit check that every original thread and message remains intact.
 - [x] Validate the skill package, copied prompt, release-kit contents, and a realistic preservation scenario.
 
+### Slice 2.4 - Guided skill installation
+
+- [x] Bundle the canonical `SKILL.md` inside the VSIX.
+- [x] Offer an explicit first-use installer with user and workspace scopes.
+- [x] Support Codex/Cursor, Claude Code, and combined destinations without modifying existing guidance files.
+- [x] Require confirmation before replacing a different `SKILL.md`.
+- [x] Publish `SKILL.md` as a direct GitHub Release asset alongside the complete kit and standalone skill archive.
+- [x] Document using VS Code or Cursor for the review interface with a separate agent harness editing the same working copy.
+
 ### Slice 3 - Distribution confidence
 
 - [x] Validate a clean dependency install, build, tests, package contents, release download, and isolated VSIX installation.
@@ -89,13 +98,13 @@ Acceptance:
 ## Current evidence
 
 - TypeScript build, Webview JavaScript syntax, and whitespace checks pass using the Codex-bundled Node runtime.
-- All 29 core and review-model regression tests pass, including singular/plural skill-invoking prompts, the portable skill's preservation contract, and guarded deletion mutations.
+- All 31 core, review-model, and installer-model regression tests pass, including singular/plural skill-invoking prompts, supported skill destinations, stale-copy offer decisions, the portable skill's preservation contract, and guarded deletion mutations.
 - A headless rendered-interaction harness confirms the ready label, copy request, and **Copied ✓** feedback state as well as five anchored markers, no visible raw IDs, three preserved composers, isolation when another thread is submitted, per-thread and delete-all confirmations, cancellation without a mutation request, confirmed deletion requests, keyboard thread navigation, re-anchor targeting, narrow-width readability, rail hiding/restoration, visible mutation notices, and disabled mutation controls for malformed data.
 - Rendered screenshots were inspected under simulated VS Code light, dark, and high-contrast tokens; the document/rail hierarchy, focused anchor, controls, and conversation history remain legible in each.
 - Production and development dependency audits report zero known vulnerabilities after upgrading the project-local packager and applying non-breaking lockfile fixes.
-- VSIX packaging succeeds and includes the runtime Markdown renderer and packaged Webview assets while excluding `.agents`, the separately distributed product skill, tests, source, and archived material.
+- The VSIX package manifest includes the runtime Markdown renderer, Webview assets, installer, and canonical `skills/markdown-collab/SKILL.md`, while excluding `.agents`, tests, source, and archived material.
 - The lockfile passes `npm ci --dry-run`; the `0.0.10` packaged VSIX installs and enumerates as `simpliq.codex-collab` in an isolated VS Code extension directory.
-- `npm run test-kit` produces a portable, checksum-verified folder with the branded VSIX, portable Agent Skill, and installation README. Tagged builds publish the VSIX, complete `.tar.gz` archive, and a standalone skill archive through GitHub Releases.
+- `npm run test-kit` produces a portable, checksum-verified folder with the branded VSIX, portable Agent Skill, and installation README. Tagged builds publish the VSIX, complete `.tar.gz` archive, standalone skill archive, and direct `SKILL.md` through GitHub Releases.
 - The Agent Skills validator accepts `skills/markdown-collab/SKILL.md`; a fresh-agent forward test processed the one actionable thread in the five-thread fixture, preserved all five IDs and eight pre-existing messages, and changed no draft, closed, answered, anchor, or unrelated prose content.
 - The public [`v0.0.10-test.1` prerelease](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.10-test.1) passed its clean GitHub Actions build. The VSIX and `.tar.gz` assets were downloaded back from GitHub, their published SHA-256 digests matched, the archive contents were inspected, and the downloaded VSIX installed as `simpliq.codex-collab@0.0.10` in an isolated VS Code profile.
 - The stable [`v0.0.11` release](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.11) publishes the renamed repository's current assets as `markdown-collab-0.0.11.vsix` and `markdown-collab-0.0.11.tar.gz`, with standalone `AGENTS.md` and `CLAUDE.md` attachments and no test-only download naming.
@@ -114,4 +123,4 @@ Acceptance:
 
 ## Resume point
 
-Validate the new `markdown-collab` skill and release kit, then install the next packaged VSIX for final human acceptance of the complete clipboard-to-agent response loop. Cursor behavior remains a separate validation target because Cursor is not installed locally.
+Install the next packaged VSIX and capture the two installation screenshots for final human acceptance of guided skill setup and the complete clipboard-to-agent response loop. Cursor behavior remains a separate validation target because Cursor is not installed locally.

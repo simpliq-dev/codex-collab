@@ -14,6 +14,10 @@ import {
   buildReviewModel,
   ReviewModel,
 } from "./model";
+import {
+  maybeOfferAgentSkill,
+  reportAgentSkillError,
+} from "../skill/installer";
 
 type ReviewMessage = {
   type?: unknown;
@@ -55,6 +59,7 @@ export class ReviewEditorProvider implements vscode.CustomTextEditorProvider {
       localResourceRoots: [mediaRoot],
     };
     panel.webview.html = this.renderShell(panel.webview);
+    void maybeOfferAgentSkill(this.context).catch(reportAgentSkillError);
 
     let ready = false;
     let disposed = false;

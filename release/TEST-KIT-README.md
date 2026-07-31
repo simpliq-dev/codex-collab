@@ -5,7 +5,7 @@ This folder contains everything needed to install and use Markdown Collab on ano
 ## Contents
 
 - `{{VSIX_NAME}}` — the VS Code-compatible extension package.
-- `skills/markdown-collab/` — one portable Agent Skill for Codex, Cursor, Claude Code, and other Agent Skills clients.
+- `skills/markdown-collab/` — the portable Agent Skill that is also bundled inside the VSIX.
 - `SHA256SUMS.txt` — checksum for verifying the VSIX after transfer.
 
 The extension's published technical ID remains `simpliq.codex-collab` for update compatibility; the user-facing product is Markdown Collab.
@@ -23,7 +23,13 @@ The extension's published technical ID remains `simpliq.codex-collab` for update
 
 Use the same **Extensions: Install from VSIX...** command. Cursor compatibility is expected because Markdown Collab uses stable VS Code extension APIs, but this build has not yet been exercised in Cursor.
 
-## Install the agent skill
+## Install the agent skill from the extension
+
+The first time you open **Markdown Collab: Open Collaborative Review**, accept **Install skill**. You can also run **Markdown Collab: Install Agent Skill** from the Command Palette. Choose whether to install it in your user profile or the current workspace, then choose Codex and Cursor, Claude Code, or both.
+
+The installer asks before replacing a different `SKILL.md` and does not change existing `AGENTS.md`, `CLAUDE.md`, rules, or other skills.
+
+## Install the agent skill manually
 
 Copy the complete `skills/markdown-collab` folder, without editing its contents, into the project skill directory used by your agent:
 
@@ -31,7 +37,7 @@ Copy the complete `skills/markdown-collab` folder, without editing its contents,
 - Claude Code: `.claude/skills/markdown-collab/`
 - Other Agent Skills clients: the project skill directory documented by that client.
 
-Leave any existing `AGENTS.md`, `CLAUDE.md`, rules, and other skills unchanged. Open a new agent conversation after installing if the client does not refresh its skill list immediately.
+For a user-wide installation, use the corresponding directory under your home folder instead. Open a new agent conversation after installing if the client does not refresh its skill list immediately.
 
 ## Try the workflow
 
@@ -42,7 +48,7 @@ Leave any existing `AGENTS.md`, `CLAUDE.md`, rules, and other skills unchanged. 
 5. Confirm that deleting one conversation and deleting all conversations each require a separate warning confirmation; cancel the warning to preserve the document.
 6. Choose **Copy prompt** beside **N comments ready**.
 7. Paste the copied sentence into the existing agent conversation and send it once.
-8. Confirm the copied prompt explicitly invokes the `markdown-collab` skill.
+8. Confirm the copied prompt says to use the installed `markdown-collab` skill for the turn.
 9. Confirm the agent processes all ready comments together, appends one response to each handled thread, and preserves every existing conversation unless you explicitly request deletion.
 
 ## Verify the package
