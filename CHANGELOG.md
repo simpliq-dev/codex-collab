@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [0.0.13] - 2026-07-31
+## [0.0.13] - 2026-08-03
 
 ### Added
 
@@ -15,7 +15,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Expanded installation guidance for guided, manual, and offline release-kit setup.
-- Documented using VS Code or Cursor for the review interface while a separate Codex or Claude harness edits the same repository.
+- Documented using VS Code or Cursor for the review interface while a separate Codex or Claude harness edits the same repository, and recorded successful use of the extension in both editors.
+- Added a screenshot-led walkthrough for VSIX and Agent Skill installation.
 - Strengthened the copied handoff prompt so it explicitly requests the installed skill for the current turn.
 
 ## [0.0.12] - 2026-07-17
