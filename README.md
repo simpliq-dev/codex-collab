@@ -50,24 +50,25 @@ The extension does not install or call a model, create an account or send docume
 2. In VS Code or Cursor, open the Command Palette and run **Extensions: Install from VSIX...**.
 3. Select the downloaded file and reload the editor if prompted.
 
-<!-- INSTALL-SCREENSHOT-VSIX
-Add imgs/install-vsix.png here: VS Code Command Palette with "Extensions: Install from VSIX..." selected and the downloaded Markdown Collab VSIX visible in the file picker.
--->
+![VS Code Command Palette with Extensions: Install from VSIX selected](imgs/install-vsix.png)
 
 ### 2. Install the agent skill from Markdown Collab
 
-The skill is included inside the VSIX. The first time you open Collaborative Review, accept **Install skill**. Markdown Collab then asks:
+The skill is included inside the VSIX. The first time you open Collaborative Review, accept **Install skill**. You can also start the installer at any time by running **Markdown Collab: Install Agent Skill** from the Command Palette.
 
-1. Whether the skill should be available from your **user profile** across projects, or stored in the **current workspace** so it can be reviewed and shared with that project.
-2. Whether to install it for **Codex and Cursor**, **Claude Code**, or both locations.
+![VS Code Command Palette with Markdown Collab: Install Agent Skill selected](imgs/install-agent-skill.png)
 
-You can run the installer again at any time from **Markdown Collab: Install Agent Skill** in the Command Palette. If a different `SKILL.md` already exists at the destination, Markdown Collab shows its path and asks before replacing that file. Existing `AGENTS.md`, `CLAUDE.md`, rules and other skills are not changed.
+Choose whether the skill should be available from your **user profile** across projects, or stored in the **current workspace** so it can be reviewed and shared with that project.
+
+![Markdown Collab agent skill scope selection](imgs/install-agent-skill2.png)
+
+Then choose **Codex and Cursor**, **Claude Code**, or both locations.
+
+![Markdown Collab agent harness selection for Codex, Cursor, and Claude Code](imgs/install-agent-skill3.png)
+
+If a different `SKILL.md` already exists at the destination, Markdown Collab shows its path and asks before replacing that file. Existing `AGENTS.md`, `CLAUDE.md`, rules and other skills are not changed.
 
 If you add or change agent harnesses later, run **Install Agent Skill** again and select the additional destination. Markdown Collab does not prompt a Codex-only user to install Claude Code, or vice versa.
-
-<!-- INSTALL-SCREENSHOT-SKILL
-Add imgs/install-agent-skill.png here: the Markdown Collab first-use "Install skill" prompt followed by the agent harness chooser showing Codex and Cursor, Claude Code, and both.
--->
 
 ### Install the skill manually instead
 

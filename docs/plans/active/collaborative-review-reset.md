@@ -108,7 +108,7 @@ Acceptance:
 - The Agent Skills validator accepts `skills/markdown-collab/SKILL.md`; a fresh-agent forward test processed the one actionable thread in the five-thread fixture, preserved all five IDs and eight pre-existing messages, and changed no draft, closed, answered, anchor, or unrelated prose content.
 - The public [`v0.0.10-test.1` prerelease](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.10-test.1) passed its clean GitHub Actions build. The VSIX and `.tar.gz` assets were downloaded back from GitHub, their published SHA-256 digests matched, the archive contents were inspected, and the downloaded VSIX installed as `simpliq.codex-collab@0.0.10` in an isolated VS Code profile.
 - The stable [`v0.0.11` release](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.11) publishes the renamed repository's current assets as `markdown-collab-0.0.11.vsix` and `markdown-collab-0.0.11.tar.gz`, with standalone `AGENTS.md` and `CLAUDE.md` attachments and no test-only download naming.
-- Draft [PR #19](https://github.com/simpliq-dev/markdown-collab/pull/19) passes the protected **Build, test, and package** check for version 0.0.13 with the guided installer and bundled `SKILL.md`. The two README installation screenshot slots still require real VS Code captures before final publication.
+- Draft [PR #19](https://github.com/simpliq-dev/markdown-collab/pull/19) passes the protected **Build, test, and package** check for version 0.0.13 with the guided installer and bundled `SKILL.md`. Four real VS Code captures document VSIX installation and the complete three-step Agent Skill setup flow; each was inspected for legibility and unintended personal content.
 - Official VS Code documentation supports an opt-in custom text editor over the standard `TextDocument`.
 - Human screenshots and observation rejected the existing sidebar-plus-panel UX.
 - Human testing confirms the reset UI is working well; the remaining UX uncertainty is the complete clipboard-to-agent response loop.
@@ -124,4 +124,4 @@ Acceptance:
 
 ## Resume point
 
-Install the next packaged VSIX and capture the two installation screenshots for final human acceptance of guided skill setup and the complete clipboard-to-agent response loop. Cursor behavior remains a separate validation target because Cursor is not installed locally.
+Complete human review of PR #19, then merge and publish version 0.0.13. The complete clipboard-to-agent response loop and Cursor behavior remain separate validation targets because Cursor is not installed locally.
