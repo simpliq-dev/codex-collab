@@ -1,4 +1,4 @@
-# Active plan - Markdown Collab review reset
+# Completed plan - Markdown Collab review reset
 
 ## Outcome
 
@@ -31,7 +31,7 @@ Acceptance:
 - [x] Existing fixture renders with five correctly anchored conversations in the browser harness.
 - [x] Three independent composers can be populated and revisited without text loss.
 - [x] Submitting one thread does not submit or clear another thread's composer.
-- [ ] Source and review views observe the same `TextDocument` changes.
+- [x] Source and review views observe the same `TextDocument` changes.
 - [x] Malformed thread data is visibly read-only.
 
 ### Slice 2 - Interaction refinement
@@ -83,7 +83,7 @@ Acceptance:
 ### Slice 3 - Distribution confidence
 
 - [x] Validate a clean dependency install, build, tests, package contents, release download, and isolated VSIX installation.
-- [ ] Exercise the main workflow in supported VS Code.
+- [x] Exercise the main workflow in supported VS Code.
 - [x] Exercise the same VSIX in current Cursor and record any editor-specific limitations.
 - [x] Update user documentation and screenshots after UX acceptance.
 
@@ -103,12 +103,14 @@ Acceptance:
 - Rendered screenshots were inspected under simulated VS Code light, dark, and high-contrast tokens; the document/rail hierarchy, focused anchor, controls, and conversation history remain legible in each.
 - Production and development dependency audits report zero known vulnerabilities after upgrading the project-local packager and applying non-breaking lockfile fixes.
 - The VSIX package manifest includes the runtime Markdown renderer, Webview assets, installer, and canonical `skills/markdown-collab/SKILL.md`, while excluding `.agents`, tests, source, and archived material.
+- The custom review editor and source editor share the same VS Code `TextDocument`; the provider listens for matching document changes and refreshes the review model.
 - The lockfile passes `npm ci --dry-run`; the `0.0.10` packaged VSIX installs and enumerates as `simpliq.codex-collab` in an isolated VS Code extension directory.
 - `npm run test-kit` produces a portable, checksum-verified folder with the branded VSIX, portable Agent Skill, and installation README. Tagged builds publish the VSIX, complete `.tar.gz` archive, standalone skill archive, and direct `SKILL.md` through GitHub Releases.
 - The Agent Skills validator accepts `skills/markdown-collab/SKILL.md`; a fresh-agent forward test processed the one actionable thread in the five-thread fixture, preserved all five IDs and eight pre-existing messages, and changed no draft, closed, answered, anchor, or unrelated prose content.
 - The public [`v0.0.10-test.1` prerelease](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.10-test.1) passed its clean GitHub Actions build. The VSIX and `.tar.gz` assets were downloaded back from GitHub, their published SHA-256 digests matched, the archive contents were inspected, and the downloaded VSIX installed as `simpliq.codex-collab@0.0.10` in an isolated VS Code profile.
 - The stable [`v0.0.11` release](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.11) publishes the renamed repository's current assets as `markdown-collab-0.0.11.vsix` and `markdown-collab-0.0.11.tar.gz`, with standalone `AGENTS.md` and `CLAUDE.md` attachments and no test-only download naming.
-- [PR #19](https://github.com/simpliq-dev/markdown-collab/pull/19) passes the protected **Build, test, and package** check for version 0.0.13 with the guided installer and bundled `SKILL.md`. Four real VS Code captures document VSIX installation and the complete three-step Agent Skill setup flow; each was inspected for legibility and unintended personal content.
+- [PR #19](https://github.com/simpliq-dev/markdown-collab/pull/19) merged through protected `main` after the **Build, test, and package** check passed for version 0.0.13 with the guided installer and bundled `SKILL.md`. Four real VS Code captures document VSIX installation and the complete three-step Agent Skill setup flow; each was inspected for legibility and unintended personal content.
+- The stable [`v0.0.13` release](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.13) is the repository's Latest release. Its clean GitHub workflow passed, and the downloaded VSIX, complete kit, standalone skill archive, and direct `SKILL.md` were inspected. The VSIX reports version 0.0.13 and contains the canonical skill; the direct skill matches the repository source byte-for-byte.
 - Official VS Code documentation supports an opt-in custom text editor over the standard `TextDocument`.
 - Human screenshots and observation rejected the existing sidebar-plus-panel UX.
 - Human testing confirms the reset UI works well in VS Code and Cursor, with no Cursor-specific limitation reported. The remaining UX uncertainty is the complete clipboard-to-agent response loop.
@@ -122,6 +124,6 @@ Acceptance:
 - Cursor compatibility is supported by human testing; continue to avoid depending on undocumented editor behavior.
 - Package-lock changes must be produced by npm; do not install project tooling globally.
 
-## Resume point
+## Closeout
 
-Complete human review of PR #19, then merge and publish version 0.0.13. The complete clipboard-to-agent response loop remains a separate validation target.
+The review reset, guarded conversation handling, portable skill, guided installation, documentation, and GitHub distribution work are complete in version 0.0.13. Further product refinements should begin as a separate plan rather than reopening this implementation record.
