@@ -11,7 +11,7 @@ GitHub Releases are the primary distribution channel for direct VSIX installatio
 1) Update `CHANGELOG.md` and set the intended version with npm:
 
 ```bash
-npm version 0.0.13 --no-git-tag-version
+npm version X.Y.Z --no-git-tag-version
 ```
 
 2) Commit and push the version change.
@@ -19,8 +19,8 @@ npm version 0.0.13 --no-git-tag-version
 3) Create and push a tag. Tags containing a hyphen become prereleases:
 
 ```bash
-git tag v0.0.13
-git push origin v0.0.13
+git tag vX.Y.Z
+git push origin vX.Y.Z
 ```
 
 The `Publish GitHub release` workflow installs from the lockfile, runs the tests, builds the release kit, creates compressed tar archives (`.tar.gz`), and publishes the branded VSIX, complete kit, standalone skill archive, and directly downloadable `SKILL.md` on the repository's [Releases page](https://github.com/simpliq-dev/markdown-collab/releases).
