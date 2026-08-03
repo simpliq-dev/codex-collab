@@ -21,7 +21,7 @@ The extension's published technical ID remains `simpliq.codex-collab` for update
 
 ### Cursor
 
-Use the same **Extensions: Install from VSIX...** command. Cursor compatibility is expected because Markdown Collab uses stable VS Code extension APIs, but this build has not yet been exercised in Cursor.
+Use the same **Extensions: Install from VSIX...** command. The same Markdown Collab VSIX has been used successfully in Cursor.
 
 ## Install the agent skill from the extension
 

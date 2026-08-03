@@ -84,7 +84,7 @@ Acceptance:
 
 - [x] Validate a clean dependency install, build, tests, package contents, release download, and isolated VSIX installation.
 - [ ] Exercise the main workflow in supported VS Code.
-- [ ] Exercise the same VSIX in current Cursor and record any editor-specific limitations.
+- [x] Exercise the same VSIX in current Cursor and record any editor-specific limitations.
 - [x] Update user documentation and screenshots after UX acceptance.
 
 ## Validation contract
@@ -108,10 +108,10 @@ Acceptance:
 - The Agent Skills validator accepts `skills/markdown-collab/SKILL.md`; a fresh-agent forward test processed the one actionable thread in the five-thread fixture, preserved all five IDs and eight pre-existing messages, and changed no draft, closed, answered, anchor, or unrelated prose content.
 - The public [`v0.0.10-test.1` prerelease](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.10-test.1) passed its clean GitHub Actions build. The VSIX and `.tar.gz` assets were downloaded back from GitHub, their published SHA-256 digests matched, the archive contents were inspected, and the downloaded VSIX installed as `simpliq.codex-collab@0.0.10` in an isolated VS Code profile.
 - The stable [`v0.0.11` release](https://github.com/simpliq-dev/markdown-collab/releases/tag/v0.0.11) publishes the renamed repository's current assets as `markdown-collab-0.0.11.vsix` and `markdown-collab-0.0.11.tar.gz`, with standalone `AGENTS.md` and `CLAUDE.md` attachments and no test-only download naming.
-- Draft [PR #19](https://github.com/simpliq-dev/markdown-collab/pull/19) passes the protected **Build, test, and package** check for version 0.0.13 with the guided installer and bundled `SKILL.md`. Four real VS Code captures document VSIX installation and the complete three-step Agent Skill setup flow; each was inspected for legibility and unintended personal content.
+- [PR #19](https://github.com/simpliq-dev/markdown-collab/pull/19) passes the protected **Build, test, and package** check for version 0.0.13 with the guided installer and bundled `SKILL.md`. Four real VS Code captures document VSIX installation and the complete three-step Agent Skill setup flow; each was inspected for legibility and unintended personal content.
 - Official VS Code documentation supports an opt-in custom text editor over the standard `TextDocument`.
 - Human screenshots and observation rejected the existing sidebar-plus-panel UX.
-- Human testing confirms the reset UI is working well; the remaining UX uncertainty is the complete clipboard-to-agent response loop.
+- Human testing confirms the reset UI works well in VS Code and Cursor, with no Cursor-specific limitation reported. The remaining UX uncertainty is the complete clipboard-to-agent response loop.
 
 ## Constraints and risks
 
@@ -119,9 +119,9 @@ Acceptance:
 - Agent processing must treat existing thread blocks as durable human-owned history. Applying feedback is never implicit permission to delete it.
 - Review mode is not a WYSIWYG prose editor. Source editing remains native.
 - Markdown rendering must not enable raw HTML or implicit external resource loading.
-- Cursor compatibility is an explicit validation target, not an architectural assumption.
+- Cursor compatibility is supported by human testing; continue to avoid depending on undocumented editor behavior.
 - Package-lock changes must be produced by npm; do not install project tooling globally.
 
 ## Resume point
 
-Complete human review of PR #19, then merge and publish version 0.0.13. The complete clipboard-to-agent response loop and Cursor behavior remain separate validation targets because Cursor is not installed locally.
+Complete human review of PR #19, then merge and publish version 0.0.13. The complete clipboard-to-agent response loop remains a separate validation target.

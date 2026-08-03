@@ -112,7 +112,7 @@ The Markdown Collab interface and the agent chat do not have to run in the same 
 
 You might keep the document and conversations open in VS Code, then paste the prompt into Codex Desktop, Codex CLI or Claude Code. Cursor can also be used purely for the Markdown Collab interface while a different agent harness handles the work. The skill must be installed where that harness can find it.
 
-The same arrangement can work with another CLI or agent application that recognises the Agent Skills format. This is separate from editor compatibility: VS Code is the interface tested locally, while Cursor remains an intended but locally untested host for the extension.
+The same arrangement can work with another CLI or agent application that recognises the Agent Skills format. This is separate from editor compatibility: the extension has been used successfully in both VS Code and Cursor.
 
 The handoff stays simple:
 
@@ -143,7 +143,7 @@ Collaborative Review is an opt-in view over the same file. The normal Markdown s
 
 ## Current boundaries
 
-Markdown Collab is currently an early, GitHub-distributed extension. VS Code is the only editor tested locally. Cursor can install the same VSIX through its VS Code-compatible extension APIs, but has not been tested locally.
+Markdown Collab is currently an early, GitHub-distributed extension. The same VSIX has been used successfully in both VS Code and Cursor.
 
 - The extension does not inject text into an agent chat; copying and sending the handoff remains explicit.
 - It is not yet distributed through the VS Code Marketplace.
