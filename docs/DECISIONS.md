@@ -1,5 +1,15 @@
 # Decisions
 
+## 2026-07-31 - Bundle the portable skill without making installation implicit
+
+**Decision:** Package the canonical `skills/markdown-collab/SKILL.md` inside the VSIX and offer a guided installer when Collaborative Review is first opened. The human chooses user or workspace scope and the Codex/Cursor, Claude Code, or combined destination. Continue publishing `SKILL.md` as a direct release asset, a standalone skill archive, and part of the complete release kit.
+
+**Why:** A separate archive is inspectable but easy to overlook and unnecessarily manual for normal VSIX users. Bundling makes the extension and its safety protocol travel together, while the direct file and archives preserve transparent and offline installation paths.
+
+**Trust boundary:** Installing the VSIX alone does not write agent configuration. The extension asks before copying the skill and asks again before replacing a different `SKILL.md`. It never edits `AGENTS.md`, `CLAUDE.md`, another skill, or unrelated files in the chosen directory.
+
+**Invocation:** The copied handoff uses ordinary vendor-neutral wording that explicitly requests the installed skill. Client-specific `$markdown-collab` and `/markdown-collab` forms remain optional manual shortcuts rather than part of the file protocol.
+
 ## 2026-07-15 - Use an opt-in custom text editor for Collaborative Review
 
 **Decision:** Register a `CustomTextEditorProvider` for Markdown with contribution priority `option`. Open it through an explicit **Markdown Collab: Open Collaborative Review** command and keep the native source editor immediately available.
@@ -72,7 +82,7 @@
 
 ## 2026-07-16 - Publish complete test kits as compressed tar archives
 
-**Decision:** GitHub Releases remains the primary direct distribution channel. Tagged builds publish a standalone VSIX, a complete `.tar.gz` test kit containing the VSIX, portable Agent Skill, installation README, and checksum, plus a separate skill archive for users who already have the extension.
+**Decision:** GitHub Releases remains the primary direct distribution channel. Tagged builds publish a standalone VSIX, a complete `.tar.gz` kit containing the VSIX, portable Agent Skill, installation README, and checksum, a separate skill archive, and `SKILL.md` as a direct download.
 
 **Why:** The VSIX remains convenient for installation, while `.tar.gz` is a familiar, portable release format for a developer-oriented audience. Generated binaries stay out of repository history and every published asset is built from the tagged source by CI.
 

@@ -23,6 +23,10 @@ const {
   buildReviewModel,
   renderMarkdown,
 } = require("../dist/review/model");
+const {
+  skillDirectoriesForTarget,
+  shouldOfferSkillInstallation,
+} = require("../dist/skill/installModel");
 
 const fixedNow = () => new Date("2026-07-15T12:00:00.000Z");
 
@@ -122,7 +126,7 @@ test("builds an explicit agent handoff prompt from ready comments", () => {
 
   assert.equal(
     buildAgentReviewPrompt(model),
-    "Use the markdown-collab skill. 2 comments are ready for review in docs/brief.md. Process them together as one coherent turn. Preserve every existing Markdown Collab conversation unless I explicitly ask you to delete it."
+    "Use the installed markdown-collab skill for this turn. 2 comments are ready for review in docs/brief.md. Process them together as one coherent turn. Preserve every existing Markdown Collab conversation unless I explicitly ask you to delete it."
   );
   const oneComment = buildReviewModel(
     ["# Review", "", "Passage.", threadBlock()].join("\n"),
@@ -130,7 +134,7 @@ test("builds an explicit agent handoff prompt from ready comments", () => {
   );
   assert.equal(
     buildAgentReviewPrompt(oneComment),
-    "Use the markdown-collab skill. 1 comment is ready for review in brief.md. Process it. Preserve every existing Markdown Collab conversation unless I explicitly ask you to delete it."
+    "Use the installed markdown-collab skill for this turn. 1 comment is ready for review in brief.md. Process it. Preserve every existing Markdown Collab conversation unless I explicitly ask you to delete it."
   );
   assert.equal(
     buildAgentReviewPrompt(buildReviewModel("# No comments", "empty.md")),
@@ -147,6 +151,28 @@ test("keeps explicit conversation-preservation rules in the portable skill", () 
   );
   assert.match(skill, /every original thread ID still appears exactly once/);
   assert.match(skill, /every pre-existing message remains present and unchanged/);
+});
+
+test("maps guided skill installation to the supported agent directories", () => {
+  assert.deepEqual(skillDirectoriesForTarget("agents"), [
+    { hostDirectory: ".agents", label: "Codex and Cursor skill" },
+  ]);
+  assert.deepEqual(skillDirectoriesForTarget("claude"), [
+    { hostDirectory: ".claude", label: "Claude Code skill" },
+  ]);
+  assert.deepEqual(skillDirectoriesForTarget("both"), [
+    { hostDirectory: ".agents", label: "Codex and Cursor skill" },
+    { hostDirectory: ".claude", label: "Claude Code skill" },
+  ]);
+});
+
+test("offers setup for missing or stale skills without requiring every agent harness", () => {
+  assert.equal(shouldOfferSkillInstallation({ current: 0, stale: 0 }), true);
+  assert.equal(shouldOfferSkillInstallation({ current: 0, stale: 1 }), true);
+  assert.equal(shouldOfferSkillInstallation({ current: 1, stale: 1 }), true);
+  // One current installation is enough for first-use setup. People can add a
+  // second harness later through the explicit Install Agent Skill command.
+  assert.equal(shouldOfferSkillInstallation({ current: 1, stale: 0 }), false);
 });
 
 test("unescapes comment delimiters in message bodies", () => {

@@ -38,12 +38,15 @@ jobs:
           KIT="markdown-collab-${VERSION}-kit"
           ARCHIVE="markdown-collab-${VERSION}.tar.gz"
           SKILL_ARCHIVE="markdown-collab-skill-${VERSION}.tar.gz"
+          SKILL_FILE="SKILL.md"
           (cd release && tar -czf "${ARCHIVE}" "${KIT}")
           tar -czf "release/${SKILL_ARCHIVE}" -C "release/${KIT}/skills" markdown-collab
+          cp "skills/markdown-collab/SKILL.md" "release/${SKILL_FILE}"
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           echo "kit=${KIT}" >> "$GITHUB_OUTPUT"
           echo "archive=${ARCHIVE}" >> "$GITHUB_OUTPUT"
           echo "skill_archive=${SKILL_ARCHIVE}" >> "$GITHUB_OUTPUT"
+          echo "skill_file=${SKILL_FILE}" >> "$GITHUB_OUTPUT"
 
       - name: Publish release assets
         env:
@@ -53,6 +56,7 @@ jobs:
           KIT: ${{ steps.kit.outputs.kit }}
           ARCHIVE: ${{ steps.kit.outputs.archive }}
           SKILL_ARCHIVE: ${{ steps.kit.outputs.skill_archive }}
+          SKILL_FILE: ${{ steps.kit.outputs.skill_file }}
         shell: bash
         run: |
           PRERELEASE=()
@@ -61,15 +65,20 @@ jobs:
           fi
 
           TITLE="Markdown Collab ${VERSION}"
-          NOTES="Install the VSIX directly, or download the complete release kit. The portable Markdown Collab Agent Skill is also attached separately for project setup."
+          if [[ "$TAG" != "v${VERSION}" ]]; then
+            echo "Tag ${TAG} does not match package version ${VERSION}." >&2
+            exit 1
+          fi
+          NOTES="Install the VSIX directly, or download the complete release kit. SKILL.md is attached as a direct download for manual agent setup, and the same skill is bundled inside the VSIX for guided installation."
           VSIX="release/${KIT}/markdown-collab-${VERSION}.vsix"
           ARCHIVE="release/${ARCHIVE}"
           SKILL="release/${SKILL_ARCHIVE}"
+          SKILL_MD="release/${SKILL_FILE}"
 
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$VSIX" "$ARCHIVE" "$SKILL" --clobber
+            gh release upload "$TAG" "$VSIX" "$ARCHIVE" "$SKILL" "$SKILL_MD" --clobber
           else
-            gh release create "$TAG" "$VSIX" "$ARCHIVE" "$SKILL" \
+            gh release create "$TAG" "$VSIX" "$ARCHIVE" "$SKILL" "$SKILL_MD" \
               --verify-tag \
               --title "$TITLE" \
               --notes "$NOTES" \

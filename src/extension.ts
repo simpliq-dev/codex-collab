@@ -1,9 +1,11 @@
 import * as vscode from "vscode";
 import { ReviewEditorProvider } from "./review/provider";
+import { registerAgentSkillInstaller } from "./skill/installer";
 
 export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
     ReviewEditorProvider.register(context),
+    registerAgentSkillInstaller(context),
     vscode.commands.registerCommand("codexCollab.openReview", async () => {
       const uri = activeMarkdownUri();
       if (!uri) {
