@@ -27,6 +27,8 @@ Every GitHub release attaches [`SKILL.md`](https://github.com/simpliq-dev/markdo
 
 Other clients that support the open [Agent Skills](https://agentskills.io) format can use the same file in the skill location documented by that client.
 
+Install the skill for the agent harness that will handle the comments. It does not need to be the agent built into the editor: you can keep the document and Markdown Collab interface in VS Code, then use Codex Desktop, Codex CLI, Claude Code, or another skill-aware harness to edit the same working copy.
+
 The complete release kit also contains the unchanged folder at `skills/markdown-collab/`, and a standalone skill archive is available when moving the folder between machines is more convenient.
 
 Some clients take a snapshot of available skills when a conversation begins. Start a new agent conversation or restart the client if a newly installed skill is not visible immediately.

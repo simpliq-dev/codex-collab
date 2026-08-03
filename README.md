@@ -80,6 +80,8 @@ Download [`SKILL.md`](https://github.com/simpliq-dev/markdown-collab/releases/la
 | Cursor | `~/.agents/skills/markdown-collab/SKILL.md` | `.agents/skills/markdown-collab/SKILL.md` | `/markdown-collab` |
 | Claude Code | `~/.claude/skills/markdown-collab/SKILL.md` | `.claude/skills/markdown-collab/SKILL.md` | `/markdown-collab` |
 
+Install the skill where the agent handling the comments expects to find it. That agent does not have to run inside VS Code or Cursor. For example, VS Code can provide the review interface while Codex Desktop or Claude Code handles the prompt and edits the same working copy.
+
 Other clients that support the open [Agent Skills](https://agentskills.io) format can use the same file in their documented skill location. Some agents take a snapshot of available skills when a conversation begins, so start a new conversation or restart the client if the skill does not appear immediately.
 
 The release page also provides a standalone skill archive and a complete `.tar.gz` kit containing the VSIX, skill folder, installation notes and checksum. Those are useful for offline transfer or for inspecting everything before installation.
@@ -104,11 +106,13 @@ See [Installing the Markdown Collab skill](docs/install-agent-skill.md) for the 
 
 Nothing is sent automatically, and Markdown Collab does not call a model. You decide what is ready and when the agent sees it.
 
-## The editor and the agent do not have to match
+## Use the review interface with a separate agent
 
-You do not have to use the agent built into the editor. Markdown Collab reads and writes the repository, so the review interface and the agent can be separate tools.
+The Markdown Collab interface and the agent chat do not have to run in the same application. The extension stores each submitted comment in the Markdown file and copies a short handoff prompt; any compatible agent that can read and edit the same working copy can take it from there.
 
-You can use VS Code for the document and conversations while Codex CLI or Claude Code handles the edits. You can also use Cursor purely for the Markdown Collab interface while continuing the work in a separate Codex or Claude conversation. The agent only needs access to the same working copy and the installed skill.
+You might keep the document and conversations open in VS Code, then paste the prompt into Codex Desktop, Codex CLI or Claude Code. Cursor can also be used purely for the Markdown Collab interface while a different agent harness handles the work. The skill must be installed where that harness can find it.
+
+The same arrangement can work with another CLI or agent application that recognises the Agent Skills format. This is separate from editor compatibility: VS Code is the interface tested locally, while Cursor remains an intended but locally untested host for the extension.
 
 The handoff stays simple:
 
